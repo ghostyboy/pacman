@@ -1,5 +1,3 @@
-
-
 import pygame
 from pygame.transform import scale2x
 
@@ -10,19 +8,33 @@ spritesheet = pygame.image.load('msg.png')
 clock = pygame.time.Clock()
 
 
+#pallets for pacman (< * * * *
+
+pellet_image = scale2x(spritesheet.subsurface(50,70,5,5))
+
+class pellets:
+    def __init__(self, forx, fory):
+        self.x = 20
+        self.y = 20
+        self.image = pellet_image
+
+pellet1 = pellets(50,100)
+pellet2 = pellets(70,100)
+        
+
 xpad = 4
 pacman_right = spritesheet.subsurface(473,0,15,15)
 screen.blit(pacman_right,(20,400))
 pacman_left = spritesheet.subsurface(473,16,15,15)
 screen.blit(pacman_left,(40,400))
-
 screen.blit(pacman_right,(60,400))
 pacman_up = spritesheet.subsurface(473,32,15,15)
 screen.blit(pacman_up,(80,400))
 pacman = pacman_right
 pacman_down = (spritesheet.subsurface(680/3*2+xpad,48,16,16))
-pacman_wall = scale2x(spritesheet.subsurface(56,120,15,40))
+#pacman_wall = scale2x(spritesheet.subsurface(56,120,15,40))
 wall_rect = pygame.Rect(261,414,15,40)
+pallets = spriteet.subsurface(200, 100, 15, 15)
 
 
 #pacman.spawnpoint
@@ -46,8 +58,8 @@ while running:
     clock.tick(30)
  
     screen.fill((0,0,0))
-   ## screen.blit(spritesheet,(0,0))
-    screen.blit(pacman_wall,(250,400))
+   # screen.blit(spritesheet,(0,0))
+    #screen.blit(pacman_wall,(250,400))
     screen.blit(pacman,(pacman_x,pacman_y))
     
   
@@ -69,9 +81,9 @@ while running:
            pacman = pacman_right
            pacman_x += speed
 
-        if wall_rect.colliderect (get_pacman_rect(pacman_x, pacman_y)): 
-            print "collide"
-            moving = False
+       # if wall_rect.colliderect (get_pacman_rect(pacman_x, pacman_y)): 
+         #   print "collide"
+          #  moving = False
         
    
     for e in pygame.event.get():
